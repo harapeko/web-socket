@@ -8,7 +8,7 @@ const http = require('http').Server(app);
 const PORT = process.env.PORT || 3000;
 
 app.get('/', function(req, res){
-  res.send('hello world');
+  res.sendFile(__dirname + '/index.html')
 });
 
 http.listen(PORT, function() {
