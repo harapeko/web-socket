@@ -1,0 +1,9 @@
+{
+  "name": "web-socket",
+  "version": "1.0.0",
+  "description": "node.js, Express, Socket.io",
+  "main": "app.js",
+  "repository": "git@github.com:harapeko/web-socket.git",
+  "author": "harapeko <github@harapeko.me>",
+  "license": "ISC"
+}
