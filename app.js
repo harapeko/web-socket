@@ -15,9 +15,13 @@ app.get('/', function(req, res){
 io.on('connection', function(socket) {
   console.log('connected');
 
+  // NOTE: onはイベントの検知(データ受信)
   socket.on('disconnect', function() {
     console.log('user disconnected')
   })
+  .on('chat message', function(message) {
+    console.log(`message: ${message}`)
+  });
 });
 
 http.listen(PORT, function() {
