@@ -4,22 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>はじめてのWeb Socket</title>
+  <title>Web Socket Chat App</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font: 13px Helvetica, Arial; }
-    form { position: fixed; bottom: 0; display: flex; width: 100%; padding: 3px; background: black; }
+    body { padding-bottom: 50px; font: 13px Helvetica, Arial; }
+    h1 { margin: 10px .5% }
+    form { position: fixed; bottom: 0; display: flex; width: 100%; height: 40px; padding: 3px; background: black; }
     form input { width: 90%; margin-right: .5%; border: 0; }
     form button { width: 9.5%; padding: 10px; background: rgb(130, 224, 255); border: none; }
-    #messages { margin: 0; padding: 0; list-style-type: none; }
-    #messages li { padding: 5px 10px; }
-    #messages li:nth-child(odd) { background: #eee; }
+    ul { width: 99%; margin: auto; padding: 0; list-style-type: none; }
+    ul li { padding: 5px 10px; }
+    ul li:empty::before { content: "empty"; color: #aaa }
+    ul li:nth-child(odd) { background: #eee; }
   </style>
 </head>
 <body>
-  <h1>はじめてのWeb Socket</h1>
+  <h1>Web Socket Chat App</h1>
 
-  <ul id="messages"></ul>
+  <ul id="js-messages"></ul>
   <form id="js-form" action="">
     <input id="js-input" autocomplete="off" /><button>Send</button>
   </form>
@@ -37,6 +39,12 @@
       $('#js-input').val('');
 
       return false;
+    });
+
+    // サーバから検知(データ受信)
+    socket.on('chat message', function(message) {
+      $('#js-messages').append(`<li>${message}</li>`);
+      window.scrollTo(0, document.body.scrollHeight);
     });
   });
 </script>

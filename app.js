@@ -17,10 +17,12 @@ io.on('connection', function(socket) {
 
   // NOTE: onはイベントの検知(データ受信)
   socket.on('disconnect', function() {
-    console.log('user disconnected')
+    console.log('user disconnected');
   })
   .on('chat message', function(message) {
-    console.log(`message: ${message}`)
+    console.log(`message: ${message}`);
+
+    io.emit('chat message', message);
   });
 });
 
